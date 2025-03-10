@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+{% block title %}Search Results{% endblock %}
+{% block content %}
+<div id="results-container">
+    <h1>Search Results</h1>
+    <div id="movies-grid">
+        {% for m in results %}
+            <div class="movie-card">
+                <a href="{% url 'movie_detail' slug=m.slug %}">
+                    <img src="{{ m.image.url }}" alt="Poster for {{ m.title }}" class="movie-image2">
+                </a>
+                <p class="movie-title">{{ m.title }}</p>
+            </div>
+        {% empty %}
+            <p class="no-results">No results found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

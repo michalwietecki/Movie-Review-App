@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="top-movies-container">
+    <h1>Top 3 Movies:</h1>
+    <ol id="top-movies-list">
+        {% for m in top_movies %}
+            <li class="movie-item">
+                <div class="movie-info">
+                    <div class="movie-image">
+                        <a href="{% url 'movie_detail' slug=m.slug %}">
+                            <img src="{{ m.image.url }}" alt="Poster for {{ m.title }}">
+                        </a>
+                    </div>
+                    <div class="movie-details">
+                        <h2 class="movie-title">{{ m.title }}</h2>
+                        <p class="movie-rating">
+                            Rating: {{ m.rating }}/10 
+                            <span class="star-icon">⭐</span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ol>
+</div>
+{% endblock content %}

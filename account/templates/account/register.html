@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="register-container">
+    <h2>Register</h2>
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for field in registration_form %}
+            <p>
+                {{ field.label_tag }} <br>
+                {{ field }}
+                {% if field.help_text %}
+                    <small class="help-text">{{ field.help_text }}</small> <br>
+                {% endif %}
+                {% for error in field.errors %}
+                    <small class="error-message">{{ error }}</small><br>
+                {% endfor %}
+            </p>
+        {% endfor %}
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+{% endblock content %}
